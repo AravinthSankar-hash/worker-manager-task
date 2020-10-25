@@ -1,0 +1,10 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.blue-snackbar {
+    background: #2196F3;
+    float: right;
+}
+
+mat-cell.mat-cell, mat-header-cell.mat-header-cell {
+    overflow: visible; 
+  }

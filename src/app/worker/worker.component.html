@@ -1,0 +1,61 @@
+<div style="margin: 30px; margin-top: 50px;">
+  <div>
+    <label for="file">Choose File</label>
+    <input class="form-control-file" type="file" id="file" (change)="handleFileInput($event.target.files)"
+      [disabled]="isRowNotSelected">
+    <button style="margin: 30px;" class="btn btn-danger" (click)="uploadFileToActivity()"
+      [disabled]="isRowNotSelected">Upload File</button>
+  </div>
+
+  <div>
+    <label>Search Task</label>
+    <input class="form-control" type="text" style="width: 160px;" [(ngModel)]="searchText">
+    <button style="margin: 30px;" class="btn btn-info" (click)="searchTask()">Search</button>
+  </div>
+
+  <span style="background-color: aqua;">Total Rewards {{totalRewards}}</span>
+</div>
+
+<div class="mat-elevation-z8 task-table-div">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="checked">
+      <th mat-header-cell *matHeaderCellDef> Check </th>
+      <td mat-cell *matCellDef="let element">
+        <section class="example-section">
+          <mat-checkbox (click)="selectCheckBox(element, checkbox)" #checkbox class="example-margin"></mat-checkbox>
+        </section>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tID">
+      <th mat-header-cell *matHeaderCellDef> Task ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.tID}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="taskName">
+      <th mat-header-cell *matHeaderCellDef> Task Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.taskName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="estimation">
+      <th mat-header-cell *matHeaderCellDef> Estimation </th>
+      <td mat-cell *matCellDef="let element"> {{element.estimation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rating">
+      <th mat-header-cell *matHeaderCellDef> Rating </th>
+      <td mat-cell *matCellDef="let element"> {{element.rating}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowSelect(row)"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

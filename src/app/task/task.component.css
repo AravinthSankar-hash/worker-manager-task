@@ -1,0 +1,12 @@
+
+table {
+    width: 100%;
+}
+
+.task-table-div {
+    margin: 80px;
+}
+
+tr:hover {background-color:#f5f5f5;}
+
+th {background-color: grey;}
